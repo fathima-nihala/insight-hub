@@ -25,7 +25,9 @@ export const getAllEmp = async (dispatch) =>{
     try {
         dispatch(getAllRequest())
         const response = await axios.get('http://localhost:3003/api/getall');
-        dispatch(getAllSuccess(response))
+        dispatch(getAllSuccess(response.data))
+        console.log(response.data,"rr")
+        return response.data;
     } catch (error) {
         dispatch(getAllFail(error))
     }

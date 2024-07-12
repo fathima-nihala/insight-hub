@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    employee: null,
+    employee: [],
     loading: false,
     error: null,
-    friend: null,
+    // friend: null,
 };
 
 const employeeeState = createSlice({
@@ -40,15 +40,15 @@ const employeeeState = createSlice({
                 error: null,
             };
         },
-        getAllSuccess(state, action){
-            return{
+        getAllSuccess(state, action) {
+            return {
                 ...state,
                 loading: false,
-                friend: action.payload,
+                employee: action.payload,
             }
         },
-        getAllFail(state, action){
-            return{
+        getAllFail(state, action) {
+            return {
                 ...state,
                 loading: false,
                 error: action.payload,
