@@ -13,7 +13,7 @@ export const signUp = (userData) => async (dispatch) => {
         };
 
         const { data } = await axios.post('http://localhost:3003/api/register', userData, config);
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('token', JSON.stringify(data.token));
         dispatch(signUpSuccess(data));
     } catch (error) {
         dispatch(signUpFail(error.response.data.message));

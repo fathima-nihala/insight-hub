@@ -16,7 +16,6 @@ exports.signUp = catchAsyncError(async(req, res, next)=>{
         password,
         avatar
     })
-
     sendToken(user, 201, res)
 })
 

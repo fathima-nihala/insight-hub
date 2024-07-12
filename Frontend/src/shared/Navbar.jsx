@@ -1,11 +1,23 @@
 import CreateSection from "./CreateSection"
 import { useDispatch } from 'react-redux';
 import { getAllEmp } from "../actions/empActions.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      console.log('token', token);
+  
+      if (!token) {
+          navigate('/signup');
+      }
+  }, [navigate]);
 
     
     const dispatch = useDispatch();
