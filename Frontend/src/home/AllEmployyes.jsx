@@ -2,21 +2,26 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteEmployee, getAllEmp } from '../actions/empActions'
 import { Link } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 
 const AllEmployyes = () => {
   const dispatch = useDispatch()
+  const { enqueueSnackbar } = useSnackbar();
+
 
   const employee = useSelector(state => state.empState?.employee)
   console.log(employee, 'frfrfr');
 
   const deleteHandler = (id) => {
     dispatch(deleteEmployee(id));
+    enqueueSnackbar('Employee deleted successfully!', { variant: 'success' });
   };
 
   useEffect(() => {
     dispatch(getAllEmp());
   }, [dispatch])
+
   return (
     <div>
       <h3 className='text-[40px] font-bold text-[#312e81]'>{employee.count} Employees</h3>

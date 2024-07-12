@@ -118,28 +118,26 @@ const CreateSection = ({ mode, data }) => {
         formDataToSend.append('phone', formData.phone);
         formDataToSend.append('avatar', formData.avatar);
 
-        // dispatch(createEmp(formDataToSend));
-        // handleClose();
-
-        // try {
-        //     const response = await dispatch(createEmp(formDataToSend));
-        //     enqueueSnackbar('Employee created successfully!', { variant: 'success' });
-        //     handleClose();
-        // } catch (error) {
-        //     enqueueSnackbar('Failed to create employee.', { variant: 'error' });
-        // }
+       
 
         try {
             let response;
             if (mode === 'edit') {
-                response = dispatch(EditEmployee(formDataToSend, data._id));
-                handleClose();
+                response = await dispatch(EditEmployee(formDataToSend, data._id));
+               
             } else {
                 response = dispatch(createEmp(formDataToSend));
             }
+            // if (response) {
+            //     handleClose();
+            // }
             if (response) {
+                enqueueSnackbar(
+                  mode === 'edit' ? 'Employee updated successfully!' : 'Employee created successfully!',
+                  { variant: 'success' }
+                );
                 handleClose();
-            }
+              }
     
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUp as SignUpAction } from '../../actions/authActions';
+import { useSnackbar } from 'notistack';
+
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -10,8 +12,9 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
-  const { isAuthenticated } = useSelector(state => state.authState);
+  const { isAuthenticated,error } = useSelector(state => state.authState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,9 +30,18 @@ const SignUp = () => {
 
 
 
-  if (isAuthenticated) {
-    navigate('/home');
-  }
+  // if (isAuthenticated) {
+  //   navigate('/home');
+  // }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      enqueueSnackbar('Sign Up Successful!', { variant: 'success' });
+      navigate('/home');
+    } else if(error) {
+      enqueueSnackbar(error, { variant: 'error' });
+    }
+  }, [isAuthenticated, error, navigate, enqueueSnackbar]);
 
   return (
     <div className="h-screen flex justify-center items-center">

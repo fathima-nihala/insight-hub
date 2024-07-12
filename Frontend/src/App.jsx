@@ -8,7 +8,6 @@ import Profile from './pages/Profile';
 import MyProfUpdate from './profile/components/MyProfUpdate';
 import Home from './pages/Home';
 import SingleDetails from './pages/SingleDetails';
-// import PrivateRoute from './pages/PrivateRoute ';
 
 
 function App() {
