@@ -20,6 +20,7 @@ exports.signUp = catchAsyncError(async(req, res, next)=>{
     sendToken(user, 201, res)
 })
 
+//get user
 exports.getUser = catchAsyncError(async(req, res, next) =>{
     const user = await User.findById(req.params.id);
     if (!user) {
