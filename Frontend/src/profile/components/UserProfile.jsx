@@ -10,7 +10,7 @@ import { getUserProfile } from '../../actions/authActions';
 
 const UserProfile = () => {
 
-    const { user } = useSelector(state => state.authState); // Ensure 'auth' matches your slice name
+    const { user } = useSelector(state => state.authState); 
 
     const dispatch = useDispatch();
 

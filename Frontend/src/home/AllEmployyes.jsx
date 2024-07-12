@@ -12,17 +12,17 @@ const AllEmployyes = () => {
 
   const deleteHandler = (id) => {
     dispatch(deleteEmployee(id));
-};
+  };
 
   useEffect(() => {
     dispatch(getAllEmp());
-  },[dispatch])
+  }, [dispatch])
   return (
     <div>
       <h3 className='text-[40px] font-bold text-[#312e81]'>{employee.count} Employees</h3>
-      <ul className="grid grid-cols-3 gap-4  ">
+      <ul className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4  ">
         {employee && employee?.employees?.map((emp, index) => (
-          <li key={index} className="mb-2 flex flex-col justify-center items-center p-4 border rounded-lg shadow text-[20px] mt-4 ">
+          <li key={index} className="mb-2 flex flex-col justify-center items-center p-4 border rounded-lg shadow lg:text-[20px] mt-4 ">
             <Link to={`/employee/${emp._id}`}>
               <img src={emp.avatar} alt={`${emp.name}'s avatar`} className="w-16 h-16 rounded-full" />
               <p>Name: {emp.name}</p>

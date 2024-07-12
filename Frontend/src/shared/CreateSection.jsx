@@ -153,7 +153,7 @@ const CreateSection = ({ mode, data }) => {
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-8 rounded" onClick={handleOpen}>
                     Edit
                 </button> :
-                <button className='bg-indigo-900 rounded-lg text-white w-full md:w-[150px] h-[46px] hover:bg-[#c4bcb8]' onClick={handleOpen}>Create</button>
+                <button className='bg-indigo-900 rounded-lg text-white w-full lg:w-[150px] h-[46px] hover:bg-[#c4bcb8]' onClick={handleOpen}>Create</button>
 
             }
 

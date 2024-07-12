@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUp as SignUpAction } from '../../actions/authActions';
-// import { loadUserFromLocalStorage } from '../../slice/authSlice';
 
 const SignUp = () => {
   const [name, setName] = useState('');

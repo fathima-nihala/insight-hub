@@ -29,7 +29,7 @@ exports.getUser = catchAsyncError(async(req, res, next) =>{
     res.status(200).json({ user });
 })
 
-
+//update user profile
 exports.updateUser = catchAsyncError(async (req, res, next) => {
     const { name, email, password } = req.body;
     let avatar;

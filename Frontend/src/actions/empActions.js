@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createFail, createRequest, createSuccess, getAllFail, getAllRequest, getAllSuccess, getSingleFail, getSingleRequest, getSingleSuccess } from "../slice/employeeSlice";
 
-
+//create employee
 export const createEmp = (userData) => async(dispatch) => {
     const {name,email,phone,avatar} = userData;
     try {
@@ -21,7 +21,7 @@ export const createEmp = (userData) => async(dispatch) => {
     }
 }
 
-
+//get all employee & search
 export const getAllEmp = (query = {}) => async (dispatch) => {
     try {
         dispatch(getAllRequest());
@@ -36,7 +36,7 @@ export const getAllEmp = (query = {}) => async (dispatch) => {
     }
 };
 
-
+//get employee by id
 export const getEmployee = (id) => async (dispatch) => {
     try {
       dispatch(getSingleRequest());
@@ -49,6 +49,7 @@ export const getEmployee = (id) => async (dispatch) => {
     }
   };
 
+  //edit employee
   export const EditEmployee =  async (formData,id) =>{
     try {
         const response = await axios.put(`http://localhost:3003/api/employee/${id}`,formData)
@@ -58,6 +59,7 @@ export const getEmployee = (id) => async (dispatch) => {
     }
   }
 
+  //delete employee
   export const deleteEmployee = async (id) => {
     try {
         const response = await axios.delete(`http://localhost:3003/api/delete/${id}`);

@@ -5,7 +5,6 @@ const initialState = {
     loading: false,
     error: null,
     singleEmployee: null,
-    // searchQuery: '',
 };
 
 const employeeeState = createSlice({

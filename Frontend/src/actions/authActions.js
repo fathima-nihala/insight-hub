@@ -27,7 +27,7 @@ export const signUp = (userData) => async (dispatch) => {
 export const getUserProfile = () => async (dispatch) => {
     try {
       const storedUser = JSON.parse(localStorage.getItem('user'));
-      const userId = storedUser?.user?._id; // Assuming your user object structure
+      const userId = storedUser?.user?._id; 
       if (!userId) {
         throw new Error('User ID not found in localStorage');
       }
@@ -46,7 +46,7 @@ export const getUserProfile = () => async (dispatch) => {
         dispatch(updateProfileRequest())
 
         const storedUser = JSON.parse(localStorage.getItem('user'));
-        const userId = storedUser?.user?._id; // Assuming your user object structure
+        const userId = storedUser?.user?._id; 
         if (!userId) {
           throw new Error('User ID not found in localStorage');
         }
