@@ -15,8 +15,8 @@ const AllEmployyes = () => {
 };
 
   useEffect(() => {
-    dispatch(getAllEmp)
-  })
+    dispatch(getAllEmp());
+  },[dispatch])
   return (
     <div>
       <h3 className='text-[40px] font-bold text-[#312e81]'>{employee.count} Employees</h3>

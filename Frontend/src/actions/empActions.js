@@ -21,17 +21,21 @@ export const createEmp = (userData) => async(dispatch) => {
     }
 }
 
-export const getAllEmp = async (dispatch) =>{
+
+export const getAllEmp = (query = {}) => async (dispatch) => {
     try {
-        dispatch(getAllRequest())
-        const response = await axios.get('http://localhost:3003/api/getall');
-        dispatch(getAllSuccess(response.data))
-        console.log(response.data,"rr")
+        dispatch(getAllRequest());
+        const response = await axios.get('http://localhost:3003/api/getall', {
+            params: query,
+        });
+        dispatch(getAllSuccess(response.data));
+        console.log(response.data, "response data");
         return response.data;
     } catch (error) {
-        dispatch(getAllFail(error))
+        dispatch(getAllFail(error));
     }
-}
+};
+
 
 export const getEmployee = (id) => async (dispatch) => {
     try {

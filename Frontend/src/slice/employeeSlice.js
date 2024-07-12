@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     error: null,
     singleEmployee: null,
+    // searchQuery: '',
 };
 
 const employeeeState = createSlice({
@@ -74,9 +75,17 @@ const employeeeState = createSlice({
                 loading: false,
                 error: action.payload,
             };
-        }
+        },
+        setSearchQuery(state, action) {
+           return{
+            ...state,
+            employee:action.payload
+           }
+        },
+        
+
     }
 });
 
-export const { createRequest, createSuccess, createFail, getAllRequest, getAllSuccess, getAllFail, getSingleRequest, getSingleSuccess, getSingleFail } = employeeeState.actions;
+export const { createRequest, createSuccess, createFail, getAllRequest, getAllSuccess, getAllFail, getSingleRequest, getSingleSuccess, getSingleFail, setSearchQuery } = employeeeState.actions;
 export default employeeeState.reducer;

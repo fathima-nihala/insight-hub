@@ -1,7 +1,9 @@
-import React from 'react'
 import AllEmployyes from '../home/AllEmployyes'
 
 const Home = () => {
+
+
+  
   return (
     <div>
       <AllEmployyes/>
