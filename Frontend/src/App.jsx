@@ -7,19 +7,11 @@ import Navbar from './shared/Navbar';
 import Profile from './pages/Profile';
 import MyProfUpdate from './profile/components/MyProfUpdate';
 import Home from './pages/Home';
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
-// import { loadUserFromLocalStorage } from './slice/authSlice';
+import SingleDetails from './pages/SingleDetails';
+// import PrivateRoute from './pages/PrivateRoute ';
+
 
 function App() {
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //     dispatch(loadUserFromLocalStorage());
-  // }, [dispatch]);
-
-
 
   return (
     <Router>
@@ -38,9 +30,11 @@ function App() {
                 <Navbar/>
                 <Box sx={{ padding: 4 }}>
                 <Routes>
-                   <Route path="/" element={<Home />} />
-                  <Route path="/profile" element={<Profile />} />
+                   <Route path="/"  element={<Home />} />
+                  <Route path="/profile" element={<Profile />}  />
                   <Route path="/myprofile/update" element={<MyProfUpdate />} />
+                  <Route path="/employee/:id" element={<SingleDetails />} />
+
 
                  
                 </Routes>

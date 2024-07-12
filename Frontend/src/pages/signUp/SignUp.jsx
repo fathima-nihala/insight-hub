@@ -29,7 +29,7 @@ const SignUp = () => {
 
 
   if (isAuthenticated) {
-    navigate('/');
+    navigate('/home');
   }
 
   return (

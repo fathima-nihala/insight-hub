@@ -4,7 +4,7 @@ const initialState = {
     employee: [],
     loading: false,
     error: null,
-    // friend: null,
+    singleEmployee: null,
 };
 
 const employeeeState = createSlice({
@@ -53,9 +53,30 @@ const employeeeState = createSlice({
                 loading: false,
                 error: action.payload,
             }
+        },
+        getSingleRequest(state) {
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        },
+        getSingleSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                singleEmployee: action.payload,
+            };
+        },
+        getSingleFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
         }
     }
 });
 
-export const { createRequest, createSuccess, createFail, getAllRequest, getAllSuccess, getAllFail } = employeeeState.actions;
+export const { createRequest, createSuccess, createFail, getAllRequest, getAllSuccess, getAllFail, getSingleRequest, getSingleSuccess, getSingleFail } = employeeeState.actions;
 export default employeeeState.reducer;

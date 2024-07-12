@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createFail, createRequest, createSuccess, getAllFail, getAllRequest, getAllSuccess } from "../slice/employeeSlice";
+import { createFail, createRequest, createSuccess, getAllFail, getAllRequest, getAllSuccess, getSingleFail, getSingleRequest, getSingleSuccess } from "../slice/employeeSlice";
 
 
 export const createEmp = (userData) => async(dispatch) => {
@@ -32,3 +32,33 @@ export const getAllEmp = async (dispatch) =>{
         dispatch(getAllFail(error))
     }
 }
+
+export const getEmployee = (id) => async (dispatch) => {
+    try {
+      dispatch(getSingleRequest());
+      const response = await axios.get(`http://localhost:3003/api/getall/${id}`);
+      dispatch(getSingleSuccess(response.data));
+      console.log(response.data, 'hhhhh');
+      return response.data;     
+    } catch (error) {
+      dispatch(getSingleFail(error.message));
+    }
+  };
+
+  export const EditEmployee =  async (formData,id) =>{
+    try {
+        const response = await axios.put(`http://localhost:3003/api/employee/${id}`,formData)
+        return response.data
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  export const deleteEmployee = async (id) => {
+    try {
+        const response = await axios.delete(`http://localhost:3003/api/delete/${id}`);
+        console.log(response, 'successfully completed');
+    } catch (error) {
+        console.log(error);
+    }
+};

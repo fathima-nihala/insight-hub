@@ -1,16 +1,17 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Box, IconButton, Divider, ListItemText } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DropZone from './DropZone';
 import { useDispatch } from 'react-redux';
-import { createEmp } from '../actions/empActions';
+import { createEmp, EditEmployee } from '../actions/empActions';
 import { enqueueSnackbar, useSnackbar } from "notistack";
 
 
-const CreateSection = () => {
+const CreateSection = ({ mode, data }) => {
     const [open, setOpen] = useState(false);
+    console.log(data, "asd")
     const [previewImage2, setPreviewImage2] = useState(null);
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
@@ -29,6 +30,27 @@ const CreateSection = () => {
         phone: false,
     });
 
+    useEffect(() => {
+        if (mode === 'edit') {
+            setFormData({
+                name: data?.name || '',
+                email: data?.email || '',
+                phone: data?.phone || '',
+                avatar: data?.avatar || '',
+            });
+            setPreviewImage2(data?.avatar || null);
+        } else {
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                avatar: '',
+            });
+            setPreviewImage2(null);
+        }
+    }, [mode, data]);
+
+
     const handleOpen = () => setOpen(true);
 
     const handleClose = () => {
@@ -46,6 +68,7 @@ const CreateSection = () => {
         });
         setPreviewImage2(null);
     };
+
 
     const onFileUpload = (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -78,7 +101,7 @@ const CreateSection = () => {
         }));
     };
 
-    const handleSave =async () => {
+    const handleSave = async () => {
         const { name, email, phone } = formData;
         if (!name || !email || !phone) {
             setFormErrors({
@@ -94,7 +117,7 @@ const CreateSection = () => {
         formDataToSend.append('email', formData.email);
         formDataToSend.append('phone', formData.phone);
         formDataToSend.append('avatar', formData.avatar);
-        
+
         // dispatch(createEmp(formDataToSend));
         // handleClose();
 
@@ -107,25 +130,37 @@ const CreateSection = () => {
         // }
 
         try {
-            const response = await dispatch(createEmp(formDataToSend));
-            if (response.success) {
-                enqueueSnackbar('Employee created successfully!', { variant: 'success' });
+            let response;
+            if (mode === 'edit') {
+                response = dispatch(EditEmployee(formDataToSend, data._id));
+                handleClose();
             } else {
-                enqueueSnackbar('Failed to create employee.', { variant: 'error' });
+                response = dispatch(createEmp(formDataToSend));
             }
-            handleClose();
+            if (response) {
+                handleClose();
+            }
+    
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });
-    };
-}
+        }
+
+    }
 
     return (
         <div>
-            <button className='bg-indigo-900 rounded-lg text-white w-full md:w-[150px] h-[46px] hover:bg-[#c4bcb8]' onClick={handleOpen}>Create</button>
+            {mode === "edit" ?
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-8 rounded" onClick={handleOpen}>
+                    Edit
+                </button> :
+                <button className='bg-indigo-900 rounded-lg text-white w-full md:w-[150px] h-[46px] hover:bg-[#c4bcb8]' onClick={handleOpen}>Create</button>
+
+            }
 
             <Dialog open={open} maxWidth="sm" fullWidth sx={{ borderRadius: '15px' }}>
                 <DialogTitle className='text-[24px] font-medium'>
-                    Create
+                    {mode === "edit" ?
+                        'Edit' : 'create'}
                     <IconButton
                         aria-label='close'
                         onClick={handleClose}
