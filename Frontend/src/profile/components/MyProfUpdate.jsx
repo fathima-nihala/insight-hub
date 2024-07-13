@@ -45,33 +45,6 @@ const MyProfUpdate = () => {
     navigate('/');
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setName(user.name);
-  //     setEmail(user.email);
-  //     if (user.avatar) {
-  //       setAvatarPreview(user.avatar);
-  //     }
-  //   }
-
-  //   if (isUpdated) {
-  //     toast('Profile updated successfully', {
-  //       type: 'success',
-  //       position: 'bottom-center',
-  //       onOpen: () => dispatch(clearUpdateProfile())
-  //     });
-  //     return;
-  //   }
-
-  //   if (error) {
-  //     toast(error, {
-  //       position: 'bottom-center',
-  //       type: 'error',
-  //       onOpen: () => { dispatch(clearAuthError) }
-  //     });
-  //     return;
-  //   }
-  // }, [user, isUpdated, error, dispatch]);
 
   return (
     <div className="flex justify-center items-center h-screen">
