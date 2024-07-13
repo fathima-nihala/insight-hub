@@ -14,7 +14,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const { isAuthenticated,error } = useSelector(state => state.authState);
+  const { isAuthenticated, error } = useSelector(state => state.authState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,19 +29,28 @@ const SignUp = () => {
   };
 
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log('tokenhhhh', token);
+
+    if (token) {
+      enqueueSnackbar('Sign Up Successful!', { variant: 'success' });
+      navigate('/');
+    }
+  }, [navigate, enqueueSnackbar]);
 
   // if (isAuthenticated) {
   //   navigate('/home');
   // }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      enqueueSnackbar('Sign Up Successful!', { variant: 'success' });
-      navigate('/home');
-    } else if(error) {
-      enqueueSnackbar(error, { variant: 'error' });
-    }
-  }, [isAuthenticated, error, navigate, enqueueSnackbar]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     enqueueSnackbar('Sign Up Successful!', { variant: 'success' });
+  //     navigate('/home');
+  //   } else if(error) {
+  //     enqueueSnackbar(error, { variant: 'error' });
+  //   }
+  // }, [isAuthenticated, error, navigate, enqueueSnackbar]);
 
   return (
     <div className="h-screen flex justify-center items-center">

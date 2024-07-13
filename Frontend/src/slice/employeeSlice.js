@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     error: null,
     singleEmployee: null,
+    isempDeleted: false,
 };
 
 const employeeeState = createSlice({
@@ -76,15 +77,52 @@ const employeeeState = createSlice({
             };
         },
         setSearchQuery(state, action) {
-           return{
-            ...state,
-            employee:action.payload
-           }
+            return {
+                ...state,
+                employee: action.payload
+            }
         },
-        
+        deleteEmpRequest(state, action) {
+            return {
+                ...state,
+                loading: true
+            }
+        },
+        deleteEmpSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isempDeleted: true,
+                employee:action.payload
+            }
+        },
+        deleteEmpFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+
+
+
 
     }
 });
 
-export const { createRequest, createSuccess, createFail, getAllRequest, getAllSuccess, getAllFail, getSingleRequest, getSingleSuccess, getSingleFail, setSearchQuery } = employeeeState.actions;
+export const {
+    createRequest,
+    createSuccess,
+    createFail,
+    getAllRequest,
+    getAllSuccess,
+    getAllFail,
+    getSingleRequest,
+    getSingleSuccess,
+    getSingleFail,
+    setSearchQuery,
+    deleteEmpRequest,
+    deleteEmpSuccess,
+    deleteEmpFail
+} = employeeeState.actions;
 export default employeeeState.reducer;

@@ -3,6 +3,7 @@ import defaultimage from '../../assets/user-removebg-preview.png';
 import { updateProfile } from "../../actions/authActions";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const MyProfUpdate = () => {
   const { error, user, isUpdated } = useSelector(state => state.authState);
@@ -10,6 +11,8 @@ const MyProfUpdate = () => {
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
 
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(user? user?.avatar:defaultimage);
@@ -36,6 +39,8 @@ const MyProfUpdate = () => {
     formData.append('password', password);
 
     dispatch(updateProfile(formData));
+    enqueueSnackbar('Updated Successfully!', { variant: 'success' });
+
 
     navigate('/');
   };

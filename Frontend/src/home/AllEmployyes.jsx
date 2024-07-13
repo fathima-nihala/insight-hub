@@ -33,7 +33,6 @@ const AllEmployyes = () => {
               <p>Name: {emp.name}</p>
               <p>Phone: {emp.phone}</p>
               <p>Email: {emp.email}</p>
-
             </Link>
             <div className='flex justify-end mt-6 '>
               <button className=' bg-red-600 rounded-md text-white text-[16px] px-4 hover:bg-slate-500' onClick={() => deleteHandler(emp._id)}>Delete</button>

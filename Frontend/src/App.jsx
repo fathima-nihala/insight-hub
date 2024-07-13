@@ -26,17 +26,17 @@ function App() {
                   flexGrow: 1,
                 }}
               >
-                <Navbar/>
+                <Navbar />
                 <Box sx={{ padding: 4 }}>
-                <Routes>
-                   <Route path="/"  element={<Home />} />
-                  <Route path="/profile" element={<Profile />}  />
-                  <Route path="/myprofile/update" element={<MyProfUpdate />} />
-                  <Route path="/employee/:id" element={<SingleDetails />} />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/myprofile/update" element={<MyProfUpdate />} />
+                    <Route path="/employee/:id" element={<SingleDetails />} />
 
 
-                 
-                </Routes>
+
+                  </Routes>
                 </Box>
               </Box>
             </Box>

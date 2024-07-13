@@ -69,6 +69,10 @@ const CreateSection = ({ mode, data }) => {
         setPreviewImage2(null);
     };
 
+    // const closeHandler = () => {
+    //     setOpen(false);
+    // }
+
 
     const onFileUpload = (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -111,34 +115,33 @@ const CreateSection = ({ mode, data }) => {
             });
             return;
         }
-        // Dispatch createEmp action
+
         const formDataToSend = new FormData();
         formDataToSend.append('name', formData.name);
         formDataToSend.append('email', formData.email);
         formDataToSend.append('phone', formData.phone);
         formDataToSend.append('avatar', formData.avatar);
 
-       
 
         try {
             let response;
             if (mode === 'edit') {
-                response = await dispatch(EditEmployee(formDataToSend, data._id));
-               
+                response =await dispatch(EditEmployee(formDataToSend, data._id));
+                // closeHandler();
             } else {
-                response = dispatch(createEmp(formDataToSend));
+                response = await dispatch(createEmp(formDataToSend));
             }
             // if (response) {
             //     handleClose();
             // }
             if (response) {
                 enqueueSnackbar(
-                  mode === 'edit' ? 'Employee updated successfully!' : 'Employee created successfully!',
-                  { variant: 'success' }
+                    mode === 'edit' ? 'Employee updated successfully!' : 'Employee created successfully!',
+                    { variant: 'success' }
                 );
                 handleClose();
-              }
-    
+            }
+
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });
         }

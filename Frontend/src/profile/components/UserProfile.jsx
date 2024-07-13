@@ -28,7 +28,7 @@ const UserProfile = () => {
     //logout user
 
     const handleLogout = () => {
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('token');
         enqueueSnackbar('Logged out successfully!', { variant: 'success' });
         navigate('/signup');
     };
